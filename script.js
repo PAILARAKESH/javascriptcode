@@ -54,24 +54,28 @@ function paginate(){
 
 // Add Api Data Here //
 
-function postAddDataFromApi(){
+function postAddDataFromApi(e){
+	e.preventDefault();
+	var stitle = document.getElementById('title').value;
+	var sdescription = document.getElementById('description').value;
+	  
+	  console.log("Input Data:" + stitle + " " + sdescription);
+	  
 	fetch('https://jsonplaceholder.typicode.com/posts', {
   method: 'POST',
   body: JSON.stringify({
-    title: document.getElementById('title').value,
-    body: document.getElementById('description').value,
+    title: stitle,
+    body: sdescription,
     userId: 1,
   }),
   headers: {
     'Content-type': 'application/json; charset=UTF-8',
   },
 })
-  .then((response) => 
-  {
-	  alert(response.json)
-	return  response.json()
-	  })
-  .then((json) => alert(json));
+  .then(response => response.json())
+        .then(json => {
+          console.log('response: ' + JSON.stringify(json));
+        })
 	
 	
 }
@@ -114,7 +118,6 @@ function deleteRecord(){
 })
  .then((response) => response.json())
   .then((json) => {console.log(json);
-  window.location.reload();
   })
 		}
 		
@@ -140,4 +143,33 @@ function showedit(){
 	}
 }
 
-//Edit Model
+//Update data Model
+
+function postUpdateDataFromApi(e){
+	e.preventDefault();
+	var stitle = document.getElementById('utitle').value;
+	var sdescription = document.getElementById('udescription').value;
+	var chkVal=$('.chkdata:checked').val();
+	//alert(chkVal);
+	  
+	  console.log("Input Data:" + stitle + " " + sdescription);
+	  
+	fetch(`https://jsonplaceholder.typicode.com/posts/${chkVal}`, {
+  method: 'PUT',
+  body: JSON.stringify({
+    title: stitle,
+    body: sdescription,
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then(response => response.json())
+        .then(json => {
+          console.log('response: ' + JSON.stringify(json));
+        })
+	
+	
+}
+

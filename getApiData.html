@@ -49,7 +49,7 @@
 				</div>
 				<div class="modal-footer">					
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<input type="submit" class="btn btn-success" id="submit" onclick="postAddDataFromApi()">
+					<input type="submit" class="btn btn-success" id="submit" onclick="postAddDataFromApi(event)">
 				</div>
 			</form>
       </div>
@@ -68,16 +68,16 @@
 				<div class="modal-body">				
 					<div class="form-group">
 						<label for="title">title</label>
-						<input type="title" name="title" id="title" class="form-control">
+						<input type="title" name="utitle" id="utitle" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
-						<textarea name="description" class="form-control" id="description"></textarea>
+						<textarea name="udescription" class="form-control" id="udescription"></textarea>
 					</div>					
 				</div>
 				<div class="modal-footer">					
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<input type="submit" class="btn btn-success" value="Update" id="Update" onclick="postAddDataFromApi()">
+					<input type="submit" class="btn btn-success" value="Update" id="Update" onclick="postUpdateDataFromApi(event)">
 				</div>
 			</form>
       </div>
