@@ -75,6 +75,11 @@ function postAddDataFromApi(e){
   .then(response => response.json())
         .then(json => {
           console.log('response: ' + JSON.stringify(json));
+		  $('#addModal').modal('toggle'); //or  $('#IDModal').modal('hide');
+          $('#title').val('');
+		  $('#description').val('');
+		   alert("Data added Successfully");
+		  return false;
         })
 	
 	
@@ -109,7 +114,7 @@ function deleteRecord(){
 		}).get();
 		console.log(delVal)
 		for(let i=0;i<delVal.length;i++){
-			alert(delVal[i]);
+			//alert(delVal[i]);
 					fetch(`https://jsonplaceholder.typicode.com/posts/${delVal[i]}`, {
 		  method: 'DELETE',
 		headers: {
@@ -118,6 +123,7 @@ function deleteRecord(){
 })
  .then((response) => response.json())
   .then((json) => {console.log(json);
+  //alert("Deleted Successfully");
   })
 		}
 		
@@ -168,8 +174,27 @@ function postUpdateDataFromApi(e){
   .then(response => response.json())
         .then(json => {
           console.log('response: ' + JSON.stringify(json));
+		   $('#editModal').modal('toggle'); //or  $('#IDModal').modal('hide');
+          $('#utitle').val('');
+		  $('#udescription').val('');
+		  //$('.chkdata').prop('checked', false);
+		  //$('#showedit').removeClass("edithidden");
+		  alert("Updated Successfully");
+		  return false;
         })
 	
 	
 }
 
+function displaydata(){
+var chkVal=$('.chkdata:checked').val();
+fetch(`https://jsonplaceholder.typicode.com/posts/${chkVal}`)
+  .then((response) => response.json())
+  .then((json) => {console.log(json);
+     var showtitle = json.title;
+	 var showdescription = json.body;
+	 $('#utitle').val(showtitle);
+	 $('#udescription').val(showdescription);
+  })
+	
+}
